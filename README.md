@@ -18,3 +18,70 @@ The system integrates **Machine-to-Machine (M2M)** communication and **Edge AI**
 4.  **Input**: Tactile Push Button (4-pin).
 5.  **Connectivity**: USB Type-A to Type-C cable (for Serial communication).
 6.  **Misc**: Breadboard and Jumper Wires.
+
+
+## 4. Installation & Setup
+1. Hardware Setup
+Connect the Push Button to the Arduino:
+
+One leg to GND.
+
+The other leg to Pin D2.
+
+Connect the Arduino to the Raspberry Pi via USB cable.
+
+Connect the Webcam to the Raspberry Pi USB port.
+
+2. Arduino Configuration
+Open arduino_node/button_trigger.ino in Arduino IDE.
+
+Select board: Arduino Uno R4 WiFi.
+
+Upload the sketch.
+
+3. Raspberry Pi Environment
+Ensure Python 3 is installed.
+
+Install required libraries:
+
+Bash
+
+pip3 install -r requirements.txt
+(Note: dlib installation may take time on Raspberry Pi)
+
+4. Facial Database
+Create a folder named known_faces inside edge_gateway/.
+
+Add photos of authorized users (e.g., john.jpg, jane.png). The filename will be used as the user's identity.
+
+## 5.How to Run
+It is recommended to run the AI Engine and the Dashboard in separate terminal windows.
+
+Step 1: Start the Web Dashboard
+
+Bash
+
+cd edge_gateway
+python3 dashboard.py
+Access the dashboard at http://<Pi-IP-Address>:8000 on your phone/PC.
+
+Step 2: Start the Edge AI Engine
+
+Bash
+
+# Open a new terminal window
+export DISPLAY=:0  # Required if running via SSH to enable GUI
+cd edge_gateway
+python3 final_main.py
+Step 3: Operation
+
+Press the button on the Arduino.
+
+The camera window will pop up on the Pi.
+
+Look at the camera.
+
+Upon successful recognition, check the Web Dashboard for the new log entry.
+
+## 6.License
+This project is submitted for the IoT Module COM6017M assessment.
