@@ -55,33 +55,34 @@ Create a folder named known_faces inside edge_gateway/.
 Add photos of authorized users (e.g., john.jpg, jane.png). The filename will be used as the user's identity.
 
 ## 5.How to Run
-It is recommended to run the AI Engine and the Dashboard in separate terminal windows.
+How to Run the System
 
-Step 1: Start the Web Dashboard
+Step 1: Install Dependencies
+Make sure you have Python 3 installed.
+bash
+pip install opencv-python face_recognition pyserial flask numpy dlib
 
-Bash
-
-cd edge_gateway
-python3 dashboard.py
-Access the dashboard at http://<Pi-IP-Address>:8000 on your phone/PC.
-
-Step 2: Start the Edge AI Engine
+Step 2: Register a New User (Enrollment)
+Run the registration script to capture your face data.
 
 Bash
 
-# Open a new terminal window
-export DISPLAY=:0  # Required if running via SSH to enable GUI
-cd edge_gateway
+python3 take_photo.py
+Enter your name when prompted.
+
+Press 's' to save photos of your face.（recommend 5-10 photos）
+
+Press 'q' to quit.
+
+Step 3: Start the Attendance System
+Connect the Arduino to the Raspberry Pi via USB, then run:
+
+Bash
+
 python3 final_main.py
-Step 3: Operation
+The system will wait for the button press on the Arduino.
 
-Press the button on the Arduino.
-
-The camera window will pop up on the Pi.
-
-Look at the camera.
-
-Upon successful recognition, check the Web Dashboard for the new log entry.
+Press the button to trigger the camera and log attendance.
 
 ## 6.License
 This project is submitted for the IoT Module COM6017M assessment.
